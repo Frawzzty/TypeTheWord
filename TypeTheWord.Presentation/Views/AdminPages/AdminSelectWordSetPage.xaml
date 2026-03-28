@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TypeTheWord.Presentation.Views.AdminPages.AdminSelectWordSetPage"
+             Title="WordSetUpdatePage"
+             Background="{StaticResource BackgroundMainGradient}"
+             Padding="20,40">
+             
+    <VerticalStackLayout>
+        <Button
+            Text="Add new Wordset"
+            Command="{Binding AddNewWordSetCommand}"/>
+
+
+        <CollectionView
+            ItemsSource="{Binding WordSets}"
+            SelectedItem="{Binding SelectedWordSet}"
+            SelectionMode="Single">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Label
+                            Text="{Binding Name}"
+                            FontSize="25"/>
+                        <Label
+                            Text="{Binding Category}"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

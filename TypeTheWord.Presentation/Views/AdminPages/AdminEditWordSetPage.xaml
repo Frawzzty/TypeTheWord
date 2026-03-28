@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TypeTheWord.Presentation.Views.AdminPages.AdminEditWordSetPage"
+             Title="AdminEditWordSetPage">
+<ScrollView>
+    <VerticalStackLayout
+        Spacing="20"
+        Margin="20">
+        <Label 
+            Text="{Binding MyWordSet.Id, StringFormat='Id: {0}'}"
+            />
+
+        <Button
+            Text="SAVE"
+            Command="{Binding SaveWordSetCommand}"
+            BackgroundColor="Green"/>
+        <Button
+            Text="DELETE"
+            Command="{Binding DeleteWordSetCommand}"
+            BackgroundColor="Red"/>
+
+
+            <Label
+           Text="Name"/>
+        <Entry
+            Placeholder="WordSet Name..."
+            Text="{Binding MyWordSet.Name}"/>
+
+        <Label
+           Text="Category"/>
+        <Entry
+            Placeholder="WordSet Name..."
+            Text="{Binding MyWordSet.Category}"/>
+
+        <Label
+            Text="Words"/>
+        
+        <CollectionView
+            ItemsSource="{Binding WordList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Entry
+                        Text="{Binding Text}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <HorizontalStackLayout
+            Spacing="10">
+            <Entry
+            Text="{Binding NewWord}"
+            Placeholder="Add new word..."
+            MinimumWidthRequest="250"/>
+
+            <Button
+                Text="Add"
+                Command="{Binding AddNewWordCommand}"/>
+        </HorizontalStackLayout>
+
+
+    </VerticalStackLayout>
+</ScrollView>
+</ContentPage>

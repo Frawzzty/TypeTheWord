@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TypeTheWord.Presentation.Views.PlayPages.WordGameResultPage"
+             Title="Result">
+
+    <!--Prevets user from clicking space and moving backwards instead-->
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout>
+        <!--Only here for focus to be on this item when page loads. Prevets user from clicking space and moving backwards instead-->
+        <CollectionView BackgroundColor="Transparent" WidthRequest="0" HeightRequest="0">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String></x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+
+        <Grid
+            RowDefinitions="*,*,*,*,*,*,*"
+            ColumnDefinitions="auto,*,auto"
+            RowSpacing="20"
+            Padding="20"
+            Margin="100">
+
+            <Border 
+                Stroke="DarkGreen"
+                StrokeThickness="5"
+                BackgroundColor="ForestGreen"
+                Grid.RowSpan="100"
+                Grid.Column="1"
+                StrokeShape="RoundRectangle 10">
+                
+            </Border>
+
+
+            <Label 
+                Margin="0, 30, 0, 0"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalOptions="Center" 
+                Text="{Binding Result.TimeSettingSeconds, StringFormat='Time: {0} sec'}"
+                FontSize="15"
+                />
+            
+            <Label 
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0, 0, 0, 0"
+                HorizontalOptions="Center"
+                Text="{Binding Result.WPM, StringFormat='{0} WPM'}"
+                FontSize="35"/>
+
+
+            <Label 
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Text="{Binding Result.WordsCorrect, StringFormat='Correct: {0}'}"
+                FontSize="15"/>
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Text="{Binding Result.WordsWrong, StringFormat='Wrong: {0}'}"
+                FontSize="15"/>
+
+
+            <Label 
+                Grid.Row="4"
+                Grid.Column="1"
+                HorizontalOptions="Center" 
+                Text="{Binding Result.TotalStreaks, StringFormat='Total streaks: {0}'}"
+                FontSize="25"/>
+
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                Text="Done"
+                TextColor="White"
+                Margin="20"
+                BackgroundColor="DarkGreen"
+                Command="{Binding GoMainPageCommand}"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

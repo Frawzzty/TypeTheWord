@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TypeTheWord.Presentation.Views.PlayPages.WordGamePlayPage"
+             Background="{StaticResource BackgroundMainGradient}"
+             Title="Play"
+             Padding="20,40">
+
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>-->
+
+    <ScrollView>
+        <VerticalStackLayout 
+            Margin="150"
+            HorizontalOptions="Center"
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                FontSize="20"
+                Text="{Binding CountDownTimer, StringFormat='{0}'}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"></Label>
+
+            
+            <CollectionView
+                SelectionMode="None"
+                ItemsSource="{Binding WordsRowTop}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Horizontal"
+                        ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Text}"
+                               FontSize="20"
+                               TextColor="{Binding TextColor}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView
+                SelectionMode="None"
+                ItemsSource="{Binding WordsRowBottom}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Horizontal"
+                        ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}"
+                               FontSize="15"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<Label
+                Text="{Binding CurrentWord}"
+                TextColor="{StaticResource GameWordColor}"
+                FontAttributes="Bold"
+                FontSize="30"/>-->
+
+            <Entry
+                x:Name="EntryWordInput"
+                Text="{Binding WordInput}"
+                FontSize="20"
+                MinimumWidthRequest="400"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Start"
+                
+                TextChanged="OnWordInputChanged"
+                />
+
+
+
+            <ProgressBar Margin="0,40,0 ,0"
+                Progress="{Binding StreakAmount}"
+                ProgressColor="Green">
+            </ProgressBar>
+
+            <Label
+                Text="{Binding TotalStreaks, StringFormat='Streaks: {0}'}"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
