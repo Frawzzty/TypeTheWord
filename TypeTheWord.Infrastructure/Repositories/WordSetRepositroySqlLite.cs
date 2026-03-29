@@ -1,5 +1,7 @@
 ﻿using Domain.Entities.Interface;
 using Domain.Entities.Models.Db;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -13,20 +15,20 @@ namespace TypeTheWord.Infrastructure.Repositories
 {
     public class WordSetRepositroySqlLite : IwordSetRepository
     {
-        private readonly MongoDbConnection _mongoDbConnection;
-        private readonly IMongoCollection<WordSet> _collection;
+        private readonly SqlLiteDbContext _db;
 
-        public WordSetRepositroySqlLite(MongoDbConnection connection)
+        public WordSetRepositroySqlLite(string connection)
         {
-            _mongoDbConnection = connection;
-            _collection = connection.GetDatabase().GetCollection<WordSet>("WordSetCollection"); // Creates new Collection in DB if does not exists
+            _db = new SqlLiteDbContext();
         }
 
         public async Task<WordSet?> GetOneAsync(string id)
         {
+            await _db.Database.EnsureCreatedAsync();
+
             try
             {
-                return await _collection.Find(x => x.Id == id).FirstAsync();
+                
             }
             catch (InvalidOperationException)
             {
@@ -42,24 +44,26 @@ namespace TypeTheWord.Infrastructure.Repositories
         }
         public async Task<List<WordSet>> GetAllAsync()
         {
-            return await _collection.Find(x => true).ToListAsync();
+            await _db.Database.EnsureCreatedAsync();
+            return null;
         }
 
 
         public async Task AddAsync(WordSet wordSet)
         {
-            await _collection.InsertOneAsync(wordSet);
+            await _db.Database.EnsureCreatedAsync();
+
         }
         public async Task UpdateAsync(WordSet wordSet)
         {
-            var filter = Builders<WordSet>.Filter.Eq(x => x.Id, wordSet.Id);
-            await _collection.ReplaceOneAsync(filter, wordSet);
+            await _db.Database.EnsureCreatedAsync();
+
         }
 
         public async Task DeleteAsync(WordSet wordSet)
         {
-            var filter = Builders<WordSet>.Filter.Eq(x => x.Id, wordSet.Id);
-            await _collection.DeleteOneAsync(filter);
+            await _db.Database.EnsureCreatedAsync();
+
         }
 
     }

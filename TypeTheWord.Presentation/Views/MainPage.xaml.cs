@@ -1,5 +1,10 @@
 ﻿using Domain.Entities.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using TypeTheWord.Infrastructure.Connections;
 using TypeTheWord.Presentation.ViewModels;
 
 namespace TypeTheWord.Presentation
@@ -21,8 +26,11 @@ namespace TypeTheWord.Presentation
 
             await _vm.LoadData();
 
+            //TESTING //WORKS
+            var context = new SqlLiteDbContext();
+            await context.Database.EnsureCreatedAsync();
+            var wordsets = await context.WordSets.ToListAsync();
         }
-
 
     }
 }
