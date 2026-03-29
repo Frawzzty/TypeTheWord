@@ -33,7 +33,8 @@
                     BorderColor="Yellow"
                     BorderWidth="1"
                     TextColor="White"
-                    Text="Profile"
+                    Text="Performance"
+                    IsEnabled="False"
                     />
                 <Button 
                     Grid.Column="1"
