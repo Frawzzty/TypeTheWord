@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TypeTheWord.Presentation.Views.PlayPages.WordGamePlayPage"
              Background="{StaticResource BackgroundMainGradient}"
-             Title="Play"
-             Padding="20,40">
+             Title="Play">
 
     <!--<Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" IsEnabled="False" />
@@ -57,12 +56,6 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!--<Label
-                Text="{Binding CurrentWord}"
-                TextColor="{StaticResource GameWordColor}"
-                FontAttributes="Bold"
-                FontSize="30"/>-->
-
             <Entry
                 x:Name="EntryWordInput"
                 Text="{Binding WordInput}"
@@ -73,7 +66,6 @@
                 
                 TextChanged="OnWordInputChanged"
                 />
-
 
 
             <ProgressBar Margin="0,40,0 ,0"
