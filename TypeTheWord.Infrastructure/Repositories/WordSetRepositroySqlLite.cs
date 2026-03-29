@@ -24,11 +24,11 @@ namespace TypeTheWord.Infrastructure.Repositories
 
         public async Task<WordSet?> GetOneAsync(string id)
         {
-            await _db.Database.EnsureCreatedAsync();
+            await _db.Database.EnsureCreatedAsync(); //Remove?
 
             try
             {
-                
+                return await _db.WordSets.Where(x => x.Id == id).SingleOrDefaultAsync();
             }
             catch (InvalidOperationException)
             {
@@ -44,26 +44,36 @@ namespace TypeTheWord.Infrastructure.Repositories
         }
         public async Task<List<WordSet>> GetAllAsync()
         {
-            await _db.Database.EnsureCreatedAsync();
-            return null;
+            await _db.Database.EnsureCreatedAsync(); //Remove?
+            return await _db.WordSets.ToListAsync();
         }
+        
 
 
         public async Task AddAsync(WordSet wordSet)
         {
-            await _db.Database.EnsureCreatedAsync();
+            if(wordSet == null)
+                return;
 
+            await _db.Database.EnsureCreatedAsync();
+            await _db.WordSets.AddAsync(wordSet);
         }
         public async Task UpdateAsync(WordSet wordSet)
         {
-            await _db.Database.EnsureCreatedAsync();
+            if (wordSet == null)
+                return;
 
+            await _db.Database.EnsureCreatedAsync();
+            _db.WordSets.Update(wordSet);
         }
 
         public async Task DeleteAsync(WordSet wordSet)
         {
-            await _db.Database.EnsureCreatedAsync();
+            if (wordSet == null)
+                return;
 
+            await _db.Database.EnsureCreatedAsync();
+            _db.WordSets.Remove(wordSet);
         }
 
     }

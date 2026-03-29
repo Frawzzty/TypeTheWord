@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using TypeTheWord.Infrastructure.Connections;
+using TypeTheWord.Infrastructure.Repositories;
 using TypeTheWord.Presentation.ViewModels;
 
 namespace TypeTheWord.Presentation
@@ -15,7 +16,7 @@ namespace TypeTheWord.Presentation
         public MainPage(MainPageViewModel vm)
         {
             InitializeComponent();
-
+            
             _vm = vm;
             BindingContext = _vm;
         }
@@ -25,9 +26,7 @@ namespace TypeTheWord.Presentation
             base.OnAppearing();
 
             await _vm.LoadData();
-
-            //TESTING //WORKS
-
+            
         }
 
     }
