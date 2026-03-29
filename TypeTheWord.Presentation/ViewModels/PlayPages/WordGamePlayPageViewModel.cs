@@ -9,7 +9,7 @@ namespace TypeTheWord.Presentation.ViewModels.PlayPages
     public class WordGamePlayPageViewModel : INotifyPropertyChanged
     {
         //Settings
-        private int _gameLengthSeconds = 1;
+        private int _gameLengthSeconds = 10;
 
         public string WordSetId = "";
         public bool IsActivePage;
@@ -69,13 +69,12 @@ namespace TypeTheWord.Presentation.ViewModels.PlayPages
                 RunGameAsync(); //No need to await //Make start check outside this, only run once?
             }
 
-            if (WordInput.Last() == ' ')
+            if (_wordGameService.TrySubmitWord(WordInput))
             {
-                _wordGameService.TryCurrentWord(WordInput.Trim());
-
                 UpdateWordsUI();
                 WordInput = "";
             }
+
         }
 
         private async Task RunGameAsync()

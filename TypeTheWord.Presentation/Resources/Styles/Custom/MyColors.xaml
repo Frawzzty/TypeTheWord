@@ -19,6 +19,15 @@
         <GradientStop Color="#121212" Offset="1"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush
+        x:Key="GradientBgLight"
+        StartPoint="0,0"
+        EndPoint="1,0">
+
+        <GradientStop Color="#121212" Offset="0"/>
+        <GradientStop Color="#2E2E2E" Offset="1"/>
+    </LinearGradientBrush>
+
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
 

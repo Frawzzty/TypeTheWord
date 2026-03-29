@@ -112,16 +112,20 @@ namespace TypeTheWord.App.Services
         }
 
 
-        public bool TryCurrentWord(string input)
+        public bool TrySubmitWord(string userInput)
         {
-            bool IsCorrect;
+            if (string.IsNullOrEmpty(userInput))
+                return false;
 
-            //Correct
-            if (GetCurrentWord() == input)
+            //Check if an actual submit
+            if (userInput.Last() != ' ')
+                return false;
+            
+            //Check if correct, remove the word submit space
+            if (GetCurrentWord() == userInput.Trim()) 
             {
                 _result.WordsCorrect++;
                 _result.StreakAmount += 0.2f;
-                IsCorrect = true;
                 Debug.WriteLine("Correct word");
 
                 if (_result.StreakAmount == 1) //1 is max for MAUI progressbar
@@ -129,27 +133,21 @@ namespace TypeTheWord.App.Services
                     _result.TotalStreaks++;
                     _result.StreakAmount = 0;
                 }
-                
             }
             else //Wrong
             {
                 _result.WordsWrong++;
                 _result.StreakAmount = 0;
-                IsCorrect = false;
                 Debug.WriteLine("Wrong word");
             }
-
-
-                
-
-
+             
             //Update words if needed
             if (WordRowTop.Count == 0)
                 UpdateWordRows();
 
             LoadNextWord();
 
-            return IsCorrect;
+            return true;
         }
 
     }

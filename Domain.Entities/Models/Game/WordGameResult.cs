@@ -19,9 +19,8 @@ namespace Domain.Entities.Models.Game
         public int TotalStreaks { get; set; }
 
         public float WPM 
-        { 
-            get => MathF.Round((WordsCorrect * TimeSettingSeconds / 60f ),2); //Div by 60f for minute //Remove decimals?
-        }
+            => MathF.Round((WordsCorrect * TimeSettingSeconds / 60f ),2); //Div by 60f for minute //Remove decimals?
+        
 
     }
 }

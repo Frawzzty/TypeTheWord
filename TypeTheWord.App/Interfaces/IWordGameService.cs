@@ -12,7 +12,7 @@ namespace TypeTheWord.App.Interfaces
 
         public Task InitializeGame(string wordsetId, int gameLengthSeconds);
         public WordGameResult GetResult();
-        public bool TryCurrentWord(string input);
+        public bool TrySubmitWord(string input);
         public void LoadNextWord();
         public bool IsGameCompleted();
 

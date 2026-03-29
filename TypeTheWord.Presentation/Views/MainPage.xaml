@@ -5,44 +5,90 @@
 
     <ScrollView>
         <VerticalStackLayout 
+            MaximumWidthRequest="1000"
             HorizontalOptions="Center"
             Margin="20"
             Spacing="25">
 
-            <Button
-                Text="Admin page"
-                Command="{Binding GoAdminPageCommand}"/>
+            <!--Logo-->
+            <Border 
+                Background="{StaticResource GradientBgLight}"
+                Stroke="Yellow"
+                StrokeShape="RoundRectangle 10">
+                <Label 
+                    Text="TYPE THE WORD"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="60"
+                    HorizontalTextAlignment="Center"
+                    Padding="20"/>
+            </Border>
+            
 
-            <Label
-                Text="Play"
-                FontAttributes="Bold"
-                FontSize="35"/>
-
-            <CollectionView
-                ItemsSource="{Binding WordSets}"
-                SelectedItem="{Binding SelectedWordSet}"
-                SelectionMode="Single">
-
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
-                        Orientation="Vertical"
-                        ItemSpacing="5"/>
-                </CollectionView.ItemsLayout>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout>
-                            <Label
-                                Text="{Binding Name}"
-                                FontSize="25"/>
-                            <Label
-                                Text="{Binding Category}"/>
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <!--Nav Buttons-->
+            <Grid ColumnDefinitions="* , *" ColumnSpacing="20">
+                <Button 
+                    Grid.Column="0"
+                    Background="{StaticResource GradientBgLight}"
+                    BorderColor="Yellow"
+                    BorderWidth="1"
+                    TextColor="White"
+                    Text="Profile"
+                    />
+                <Button 
+                    Grid.Column="1"
+                    Background="{StaticResource GradientBgLight}"
+                    BorderColor="Yellow"
+                    BorderWidth="1"
+                    Text="Admin page"
+                    TextColor="White"
+                    Command="{Binding GoAdminPageCommand}"
+                    />
+            </Grid>
 
 
+            <!--Play Collection-->
+            <Border
+                Background="{StaticResource GradientBgLight}"
+                Stroke="Yellow"
+                StrokeShape="RoundRectangle 10">
+
+                <VerticalStackLayout Padding="10">
+                    <Label
+                        Margin="10,0,0,10"
+                        Text="Play"
+                        FontAttributes="Bold"
+                        FontSize="35"/>
+                    
+                    <!--WordSet Collection-->
+                    <CollectionView
+                        ItemsSource="{Binding WordSets}"
+                        SelectedItem="{Binding SelectedWordSet}"
+                        SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
+                                Orientation="Vertical"
+                                ItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 10">
+                                    <VerticalStackLayout Margin="10">
+                                        <Label
+                                            Text="{Binding Name}"
+                                            FontSize="25"/>
+                                        <Label 
+                                            Text="{Binding Category}"/>
+                                    </VerticalStackLayout>
+                                </Border>
+                                
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+            
         </VerticalStackLayout>
     </ScrollView>
 
