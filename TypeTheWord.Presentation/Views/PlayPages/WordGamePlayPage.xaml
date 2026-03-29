@@ -16,67 +16,96 @@
             Padding="30,0"
             Spacing="25">
 
-            <Label
-                FontSize="20"
-                Text="{Binding CountDownTimer, StringFormat='{0}'}"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"></Label>
 
+            <Border 
+                Background="{StaticResource GradientBgLight}"
+                Stroke="Yellow"
+                StrokeShape="RoundRectangle 10"
+                Padding="20">
+
+                <Label
+                    FontSize="20"
+                    Text="{Binding CountDownTimer, StringFormat='{0}'}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"/>
+            </Border>
             
-            <CollectionView
-                SelectionMode="None"
-                ItemsSource="{Binding WordsRowTop}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
+
+            <Border 
+                Background="{StaticResource GradientBgLight}"
+                Stroke="Yellow"
+                StrokeShape="RoundRectangle 10"
+                Padding="20">
+
+                <VerticalStackLayout>
+                    <CollectionView
+                    SelectionMode="None"
+                    ItemsSource="{Binding WordsRowTop}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
                         Orientation="Horizontal"
                         ItemSpacing="5"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Text}"
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Text}"
                                FontSize="20"
                                TextColor="{Binding TextColor}"/>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-            <CollectionView
-                SelectionMode="None"
-                ItemsSource="{Binding WordsRowBottom}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
+                    <CollectionView
+                    SelectionMode="None"
+                    ItemsSource="{Binding WordsRowBottom}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
                         Orientation="Horizontal"
                         ItemSpacing="5"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding .}"
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding .}"
                                FontSize="15"/>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
 
-            <Entry
-                x:Name="EntryWordInput"
-                Text="{Binding WordInput}"
-                FontSize="20"
-                MinimumWidthRequest="400"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Start"
-                
-                TextChanged="OnWordInputChanged"
-                />
+            <Border 
+                Background="{StaticResource GradientBgLight}"
+                Stroke="Yellow"
+                StrokeShape="RoundRectangle 10"
+                Padding="20">
+
+                <VerticalStackLayout>
+                    <Entry
+                        x:Name="EntryWordInput"
+                        Text="{Binding WordInput}"
+                        FontSize="20"
+                        MinimumWidthRequest="400"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Start"
+                        TextChanged="OnWordInputChanged"
+                        />
+
+                    <ProgressBar Margin="0,40,0 ,20"
+                        Progress="{Binding StreakAmount}"
+                        ProgressColor="Green">
+                    </ProgressBar>
+
+                    <Label
+                        Text="{Binding TotalStreaks, StringFormat='Streaks: {0}'}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+
+            </Border>
 
 
-            <ProgressBar Margin="0,40,0 ,0"
-                Progress="{Binding StreakAmount}"
-                ProgressColor="Green">
-            </ProgressBar>
 
-            <Label
-                Text="{Binding TotalStreaks, StringFormat='Streaks: {0}'}"
-                HorizontalOptions="Start"
-                HorizontalTextAlignment="Center"/>
+
 
         </VerticalStackLayout>
     </ScrollView>
