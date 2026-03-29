@@ -12,22 +12,31 @@ namespace TypeTheWord.Infrastructure.Connections
         protected readonly string ConnString;
         public SqlLiteDbContext()
         {
-            var libPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            var folderPath = Path.Combine(libPath, "TypeTheWord", "Data");
-            if (!Directory.Exists(folderPath))
-                Directory.CreateDirectory(folderPath);
-            
-            var dbPath = Path.Combine(folderPath, "WordSets.db");
-            ConnString = $"Data Source={dbPath}";
-
-            System.Diagnostics.Debug.WriteLine($"DATABASE LOCATION: {dbPath}");
+            ConnString = GetConnectionString();
         }
+
+        public DbSet<WordSet> WordSets { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(ConnString);
         }
 
-        public DbSet<WordSet> WordSets { get; set; }
+        private string GetConnectionString()
+        {
+            var libPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var folderPath = Path.Combine(libPath, "TypeTheWord", "Data");
+
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            var dbPath = Path.Combine(folderPath, "TypeTheWordDb.db");
+            var connectionstring = $"Data Source={dbPath}";
+
+            //System.Diagnostics.Debug.WriteLine($"DATABASE LOCATION: {dbPath}");
+            return connectionstring;
+        }
     }
 }

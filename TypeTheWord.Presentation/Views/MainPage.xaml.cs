@@ -27,9 +27,7 @@ namespace TypeTheWord.Presentation
             await _vm.LoadData();
 
             //TESTING //WORKS
-            var context = new SqlLiteDbContext();
-            await context.Database.EnsureCreatedAsync();
-            var wordsets = await context.WordSets.ToListAsync();
+
         }
 
     }

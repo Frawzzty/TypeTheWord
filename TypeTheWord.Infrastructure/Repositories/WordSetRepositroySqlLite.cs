@@ -17,9 +17,9 @@ namespace TypeTheWord.Infrastructure.Repositories
     {
         private readonly SqlLiteDbContext _db;
 
-        public WordSetRepositroySqlLite(string connection)
+        public WordSetRepositroySqlLite(SqlLiteDbContext sqlLitedbContext)
         {
-            _db = new SqlLiteDbContext();
+            _db = sqlLitedbContext;
         }
 
         public async Task<WordSet?> GetOneAsync(string id)

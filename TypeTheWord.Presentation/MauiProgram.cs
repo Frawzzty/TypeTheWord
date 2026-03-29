@@ -33,6 +33,8 @@ namespace TypeTheWord.Presentation
 
             //DB
             builder.Services.AddScoped<MongoDbConnection>();
+            builder.Services.AddScoped<SqlLiteDbContext>();
+            
 
             builder.Services.AddScoped<IWordGameService, WordGameService>();
             builder.Services.AddScoped<IwordSetRepository, WordSetRepositoryMongoDb>();
