@@ -48,6 +48,11 @@ namespace TypeTheWord.Infrastructure.Repositories
 
         public async Task AddAsync(WordSet wordSet)
         {
+            if (wordSet.Id == null)
+            {
+                wordSet.Id = Guid.NewGuid().ToString();
+            }
+
             await _collection.InsertOneAsync(wordSet);
         }
         public async Task UpdateAsync(WordSet wordSet)

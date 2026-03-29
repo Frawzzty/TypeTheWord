@@ -21,7 +21,7 @@
                     FontAttributes="Bold"
                     FontSize="60"
                     HorizontalTextAlignment="Center"
-                    Padding="20"/>
+                    Padding="30,15,30,15"/>
             </Border>
             
 

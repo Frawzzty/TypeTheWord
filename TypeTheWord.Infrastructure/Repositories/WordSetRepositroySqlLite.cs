@@ -55,16 +55,25 @@ namespace TypeTheWord.Infrastructure.Repositories
             if(wordSet == null)
                 return;
 
-            await _db.Database.EnsureCreatedAsync();
+            if (wordSet.Id == null)
+            {
+                wordSet.Id = Guid.NewGuid().ToString();
+            }
+
+            await _db.Database.EnsureCreatedAsync(); //Remove?
             await _db.WordSets.AddAsync(wordSet);
+            await _db.SaveChangesAsync();
+            //System.InvalidOperationException: 'Unable to track an entity of type 'WordSet' because its primary key property 'Id' is null.'
+
         }
         public async Task UpdateAsync(WordSet wordSet)
         {
             if (wordSet == null)
                 return;
 
-            await _db.Database.EnsureCreatedAsync();
+            await _db.Database.EnsureCreatedAsync(); //Remove?
             _db.WordSets.Update(wordSet);
+            await _db.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(WordSet wordSet)
@@ -72,8 +81,9 @@ namespace TypeTheWord.Infrastructure.Repositories
             if (wordSet == null)
                 return;
 
-            await _db.Database.EnsureCreatedAsync();
+            await _db.Database.EnsureCreatedAsync(); //Remove?
             _db.WordSets.Remove(wordSet);
+            await _db.SaveChangesAsync();
         }
 
     }

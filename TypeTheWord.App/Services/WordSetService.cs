@@ -29,10 +29,7 @@ namespace TypeTheWord.App.Services
 
         public async Task AddAsync(WordSet wordSet)
         {
-            if (wordSet.Id == null)
-            {
-                wordSet.Id = Guid.NewGuid().ToString();
-            }
+
                 
             await _wordSetRepository.AddAsync(wordSet);
         }

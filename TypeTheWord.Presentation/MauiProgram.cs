@@ -37,7 +37,7 @@ namespace TypeTheWord.Presentation
             
 
             builder.Services.AddScoped<IWordGameService, WordGameService>();
-            builder.Services.AddScoped<IwordSetRepository, WordSetRepositoryMongoDb>();
+            builder.Services.AddScoped<IwordSetRepository, WordSetRepositroySqlLite>();
             builder.Services.AddScoped<IWordSetService, WordSetService>();
 
             builder.Services.AddTransient<MainPage>();

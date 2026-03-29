@@ -24,6 +24,11 @@ namespace TypeTheWord.Infrastructure.Connections
             optionsBuilder.UseSqlite(ConnString);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         private string GetConnectionString()
         {
             var libPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
